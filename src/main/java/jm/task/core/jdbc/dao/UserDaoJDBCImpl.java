@@ -5,9 +5,6 @@ import jm.task.core.jdbc.model.User;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    public UserDaoJDBCImpl() {
-
-    }
 
     public void createUsersTable() {
 
@@ -30,6 +27,16 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
+
+    }
+
+    @Override
+    public void test() {
+
+    }
+
+    @Override
+    public void saveUser(User user) {
 
     }
 }

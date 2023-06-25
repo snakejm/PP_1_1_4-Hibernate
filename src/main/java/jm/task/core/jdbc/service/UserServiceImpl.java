@@ -32,4 +32,14 @@ public class UserServiceImpl implements UserService {
     public void cleanUsersTable() {
         userDao.cleanUsersTable();
     }
+
+    @Override
+    public void test() {
+        userDao.test();
+    }
+
+    @Override
+    public void saveUser(User user) {
+        userDao.saveUser(user);
+    }
 }

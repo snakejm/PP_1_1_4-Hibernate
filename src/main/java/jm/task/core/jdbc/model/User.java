@@ -24,7 +24,26 @@ public class User {
     @Column
     private Byte age;
 
-    public User() {
+    public User(String name, String lastName, Byte age, int test) {
+        this.name = name;
+        this.lastName = lastName;
+        this.age = age;
+        this.test = test;
+    }
+
+    @Column
+    private int test;
+
+
+    public int getTest() {
+        return test;
+    }
+
+    public void setTest(int test) {
+        this.test = test;
+    }
+
+    User() {
 
     }
 
@@ -73,6 +92,7 @@ public class User {
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
+                ", test=" + test +
                 '}';
     }
 
@@ -81,11 +101,11 @@ public class User {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(age, user.age);
+        return test == user.test && Objects.equals(id, user.id) && Objects.equals(name, user.name) && Objects.equals(lastName, user.lastName) && Objects.equals(age, user.age);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, lastName, age);
+        return Objects.hash(id, name, lastName, age, test);
     }
 }

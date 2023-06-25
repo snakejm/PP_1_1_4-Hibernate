@@ -16,4 +16,8 @@ public interface UserDao {
     List<User> getAllUsers();
 
     void cleanUsersTable();
+
+    void test();
+
+    void saveUser(User user);
 }

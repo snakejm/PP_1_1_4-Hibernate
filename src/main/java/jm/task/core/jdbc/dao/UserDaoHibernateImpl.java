@@ -124,4 +124,47 @@ public class UserDaoHibernateImpl implements UserDao {
             throw e;
         }
     }
+
+    @Override
+    public void test() {
+         int isolationLevel = 4;
+        try (var session1 = Util.getSession();
+        var session2 = Util.getSession()) {
+//            session1.doWork(connection -> connection.setTransactionIsolation(isolationLevel));
+//            session2.doWork(connection -> connection.setTransactionIsolation(isolationLevel));
+
+            session1.beginTransaction();
+            session2.beginTransaction();
+
+            var user1 = session1.find(User.class, 5L);
+
+            var user2 = session2.find(User.class, 5L);
+            user2.setTest(10);
+
+            session2.getTransaction().commit();
+
+            user1.setTest(100);
+            System.out.println(user1);
+
+            session1.getTransaction().commit();
+
+
+
+        }
+    }
+
+    @Override
+    public void saveUser(User user) {
+        Transaction transaction = null;
+        try (var session = Util.getSession()) {
+            transaction = session.beginTransaction();
+            session.persist(user);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw e;
+        }
+    }
 }
